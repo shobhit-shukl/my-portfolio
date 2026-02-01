@@ -45,7 +45,7 @@ export default function Footer() {
                         <div className="space-y-6">
                             <h4 className="text-xs font-black text-white uppercase tracking-widest">Connect</h4>
                             <ul className="space-y-4">
-                                <li><a href="https://github.com/shobhit-shukl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-400 transition-colors text-sm font-medium">GitHub</a></li>
+                                <li><a href="https://github.com/shobhit-shukl/my-portfolio" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-400 transition-colors text-sm font-medium">GitHub</a></li>
                                 <li><a href="mailto:shobhitshukl2006@gmail.com" className="text-slate-500 hover:text-blue-400 transition-colors text-sm font-medium">Email</a></li>
                             </ul>
                         </div>
