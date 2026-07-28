@@ -8,28 +8,73 @@
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
-  /* Premium Mesh Background */
+  /* Premium mesh background */
   background-image:
     radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
     radial-gradient(circle at 100% 100%, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
 }
 
-/* ---------- PREMIUM ANIMATIONS ---------- */
+/* Consistent focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
-@keyframes fadeInUp {
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+/* ---------- BACKGROUND TEXTURE ---------- */
+
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(24px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -41,16 +86,59 @@ body {
   }
 
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }
 
 .animate-reveal {
-  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  animation: reveal 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* ---------- MARQUEE ---------- */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 /* ---------- CARD STYLES ---------- */
@@ -59,28 +147,45 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   backdrop-filter: blur(16px);
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.5s ease,
+    background 0.5s ease,
+    box-shadow 0.5s ease;
 }
 
 .tech-card:hover {
-  transform: translateY(-12px);
-  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-10px);
+  border-color: rgba(59, 130, 246, 0.35);
   background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.7);
 }
 
-/* Shine Effect for Buttons */
+.contact-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+.contact-card:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+  transform: translateY(-5px);
+}
+
+/* ---------- BUTTONS ---------- */
+
 .btn-premium {
   position: relative;
   overflow: hidden;
-  background: white;
-  color: black;
-  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #020617;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-premium:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  transform: scale(1.04);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.35);
 }
 
 .btn-premium::after {
@@ -90,7 +195,7 @@ body {
   left: -100%;
   width: 100%;
   height: 200%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
   transform: rotate(35deg);
   transition: 0.6s;
 }
@@ -99,7 +204,8 @@ body {
   left: 100%;
 }
 
-/* Footer text ka giant stroke/gradient look */
+/* ---------- FOOTER / LINKS ---------- */
+
 .footer-big-text {
   font-size: clamp(5rem, 20vw, 15rem);
   font-weight: 900;
@@ -111,7 +217,6 @@ body {
   user-select: none;
 }
 
-/* Social link hover animation */
 .social-link {
   position: relative;
   transition: all 0.3s ease;
@@ -132,31 +237,23 @@ body {
   width: 100%;
 }
 
-.contact-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s ease;
-}
+/* ---------- ACCESSIBILITY ---------- */
 
-.contact-card:hover {
-  border-color: #3b82f6;
-  background: rgba(59, 130, 246, 0.05);
-  transform: translateY(-5px);
-}
+@media (prefers-reduced-motion: reduce) {
 
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  html {
+    scroll-behavior: auto;
   }
 
-  to {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-reveal {
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-.animate-reveal {
-  animation: reveal 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
 }
