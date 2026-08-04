@@ -1,3 +1,5 @@
+import { projects } from "@/lib/projects";
+
 export type SkillGroup = {
     name: string;
     kicker: string;
@@ -122,8 +124,9 @@ export const techMarquee = [
     "Playwright",
 ];
 
+// Derived from the project list so the headline count can't drift out of date.
 export const stats = [
-    { value: "4", label: "Live products" },
+    { value: String(projects.filter((p) => p.liveUrl).length), label: "Live products" },
     { value: "25+", label: "Shipped modules" },
     { value: "Full", label: "Stack coverage" },
     { value: "CI/CD", label: "On every push" },
