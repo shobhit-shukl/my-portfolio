@@ -20,82 +20,82 @@ export default function Home() {
       </div>
 
       {/* --- Hero --- */}
-      <section className="relative z-10 overflow-hidden">
+      <section className="relative z-10 pt-36 sm:pt-48 md:pt-56 pb-20 sm:pb-28 px-6 max-w-7xl mx-auto flex flex-col items-center">
+        <div className="relative mb-10 sm:mb-12 animate-float">
+          <div className="absolute inset-0 bg-blue-600/20 blur-[100px] rounded-full" />
+          <div className="relative group">
+            <div className="absolute -inset-2 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full blur-xl opacity-25 group-hover:opacity-60 transition duration-700" />
+            <div className="relative p-1 rounded-full bg-gradient-to-tr from-blue-500/20 to-cyan-400/20 backdrop-blur-3xl">
+              <Image
+                src="/Shobhit.png"
+                alt="Portrait of Shobhit Shukla"
+                width={160}
+                height={160}
+                priority
+                className="relative rounded-full border border-white/10 object-cover w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] transition-all duration-700 group-hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center space-y-6 sm:space-y-8">
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/5 rounded-full border border-white/10 animate-reveal">
+            <span className="relative flex w-1.5 h-1.5">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">
+              Full Stack &amp; DevOps Engineer
+            </span>
+          </div>
+
+          <h1 className="text-[3.25rem] leading-[0.85] sm:text-7xl md:text-[100px] lg:text-[124px] font-black tracking-tighter text-white animate-reveal px-2">
+            BUILDING <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-cyan-400">
+              POSSIBILITIES.
+            </span>
+          </h1>
+
+          <p className="text-slate-400 text-base md:text-xl font-light max-w-2xl mx-auto leading-relaxed animate-reveal delay-100 px-2">
+            I design and ship <span className="text-white">production systems end to end</span> —
+            typed frontends, hardened APIs, containerised infrastructure and the CI/CD that gets
+            them live.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 animate-reveal delay-200">
+            <Link
+              href="/projects"
+              className="btn-premium w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-sm tracking-wide"
+            >
+              View Live Projects
+            </Link>
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-white/12 text-sm font-bold tracking-wide text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+            >
+              Get in Touch
+            </Link>
+          </div>
+        </div>
+
+        {/* Showcase video */}
         <HeroVideo />
-        <div className="relative z-10 pt-36 sm:pt-48 md:pt-56 pb-20 sm:pb-28 px-6 max-w-7xl mx-auto flex flex-col items-center">
-          <div className="relative mb-10 sm:mb-12 animate-float">
-            <div className="absolute inset-0 bg-blue-600/20 blur-[100px] rounded-full" />
-            <div className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full blur-xl opacity-25 group-hover:opacity-60 transition duration-700" />
-              <div className="relative p-1 rounded-full bg-gradient-to-tr from-blue-500/20 to-cyan-400/20 backdrop-blur-3xl">
-                <Image
-                  src="/Shobhit.png"
-                  alt="Portrait of Shobhit Shukla"
-                  width={160}
-                  height={160}
-                  priority
-                  className="relative rounded-full border border-white/10 object-cover w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] transition-all duration-700 group-hover:scale-105"
-                />
-              </div>
+
+        {/* Stat strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px mt-20 sm:mt-28 w-full max-w-4xl rounded-3xl overflow-hidden border border-white/8 bg-white/[0.04] animate-reveal delay-300">
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="bg-[#040b1d]/60 backdrop-blur-xl px-5 py-7 text-center space-y-1.5"
+            >
+              <p className="text-2xl sm:text-3xl font-black text-white tracking-tighter">
+                {s.value}
+              </p>
+              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.22em]">
+                {s.label}
+              </p>
             </div>
-          </div>
-
-          <div className="text-center space-y-6 sm:space-y-8">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/5 rounded-full border border-white/10 animate-reveal">
-              <span className="relative flex w-1.5 h-1.5">
-                <span className="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              </span>
-              <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">
-                Full Stack &amp; DevOps Engineer
-              </span>
-            </div>
-
-            <h1 className="text-[3.25rem] leading-[0.85] sm:text-7xl md:text-[100px] lg:text-[124px] font-black tracking-tighter text-white animate-reveal px-2">
-              BUILDING <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-cyan-400">
-                POSSIBILITIES.
-              </span>
-            </h1>
-
-            <p className="text-slate-400 text-base md:text-xl font-light max-w-2xl mx-auto leading-relaxed animate-reveal delay-100 px-2">
-              I design and ship <span className="text-white">production systems end to end</span> —
-              typed frontends, hardened APIs, containerised infrastructure and the CI/CD that gets
-              them live.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 animate-reveal delay-200">
-              <Link
-                href="/projects"
-                className="btn-premium w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-sm tracking-wide"
-              >
-                View Live Projects
-              </Link>
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-white/12 text-sm font-bold tracking-wide text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
-              >
-                Get in Touch
-              </Link>
-            </div>
-          </div>
-
-          {/* Stat strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px mt-20 sm:mt-28 w-full max-w-4xl rounded-3xl overflow-hidden border border-white/8 bg-white/[0.04] animate-reveal delay-300">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="bg-[#040b1d]/60 backdrop-blur-xl px-5 py-7 text-center space-y-1.5"
-              >
-                <p className="text-2xl sm:text-3xl font-black text-white tracking-tighter">
-                  {s.value}
-                </p>
-                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.22em]">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 

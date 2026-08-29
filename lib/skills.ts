@@ -35,9 +35,9 @@ export const skillGroups: SkillGroup[] = [
     {
         name: "Backend",
         kicker: "Services",
-        desc: "REST APIs with validation at the boundary, token auth, rate limiting and hardened headers by default.",
+        desc: "REST APIs with validation at the boundary, OAuth 2.0 integrations, rate limiting and hardened headers by default.",
         icon: "⚙️",
-        items: ["Node.js", "Express", "REST APIs", "JWT & bcrypt", "Zod", "Server Actions"],
+        items: ["Node.js", "NestJS", "Express", "Prisma", "OAuth 2.0", "JWT & argon2", "Zod"],
         accent: {
             text: "text-indigo-400",
             bg: "bg-indigo-500/10",
@@ -110,7 +110,8 @@ export const techMarquee = [
     "React",
     "TypeScript",
     "Node.js",
-    "Express",
+    "NestJS",
+    "Prisma",
     "PostgreSQL",
     "MongoDB",
     "Redis",

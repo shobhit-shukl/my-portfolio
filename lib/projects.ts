@@ -34,6 +34,79 @@ export type Project = {
 
 export const projects: Project[] = [
     {
+        slug: "crosspost-ai",
+        name: "CrossPost AI",
+        tagline: "Publish once, everywhere your audience is",
+        summary:
+            "A content distribution platform that takes one video and publishes it across connected social accounts through official OAuth APIs — no scraping, no borrowed passwords, tokens encrypted at rest.",
+        overview:
+            "CrossPost AI removes the copy-paste tax on publishing. Connect an account through the platform's real OAuth consent screen, pick a video — uploaded directly or pulled from Google Drive — and the API publishes it on your behalf, with scheduling handled through Google Calendar. YouTube, Drive and Calendar are live; Instagram, LinkedIn, TikTok, X, Snapchat and Facebook are in progress. It is a pnpm monorepo: a NestJS API on Render fronted by a Next.js dashboard on Vercel, sharing a Postgres database through Prisma. Credentials never reach the browser — the frontend holds a session cookie and nothing else.",
+        year: "2026",
+        role: "Full-stack engineer — OAuth integrations, API, data model, dashboard",
+        status: "Active Development",
+        featured: true,
+        liveUrl: "https://cross-platform-ai.vercel.app",
+        repoUrl: "https://github.com/shobhit-shukl/cross-platform-ai",
+        accent: {
+            text: "text-violet-400",
+            bg: "bg-violet-500/10",
+            border: "border-violet-500/25",
+            glow: "group-hover:shadow-[0_0_60px_-15px_rgba(167,139,250,0.45)]",
+            gradient: "from-violet-500 to-purple-400",
+        },
+        tags: ["NestJS", "Next.js", "Prisma", "PostgreSQL", "OAuth 2.0", "Docker"],
+        metrics: [
+            { label: "Integrations live", value: "3" },
+            { label: "Token storage", value: "AES-256" },
+            { label: "Architecture", value: "Monorepo" },
+            { label: "Deploy targets", value: "Vercel + Render" },
+        ],
+        stack: [
+            { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Motion"] },
+            { group: "Backend", items: ["NestJS", "Prisma", "class-validator", "Zod", "Multer", "Helmet"] },
+            { group: "Data", items: ["PostgreSQL 16", "Prisma migrations", "Docker Compose"] },
+            { group: "Integrations", items: ["Google OAuth 2.0", "YouTube Data API v3", "Google Drive", "Google Calendar"] },
+            { group: "Security", items: ["argon2", "AES-256-GCM", "Signed OAuth state", "Throttler", "CORS allowlist"] },
+            { group: "Platform", items: ["pnpm workspaces", "Vercel", "Render", "Docker"] },
+        ],
+        modules: [
+            { title: "Account connection", desc: "Official OAuth 2.0 consent flows — the app never sees a platform password.", icon: "🔗" },
+            { title: "Publish pipeline", desc: "Select a video and push it live through the platform's own API, tracked as a publishing job.", icon: "🚀" },
+            { title: "Drive library", desc: "Pull source video straight from connected Google Drive instead of re-uploading it.", icon: "📁" },
+            { title: "Scheduling", desc: "Calendar-backed scheduling so posts go out when the audience is actually online.", icon: "🗓️" },
+            { title: "Dashboard", desc: "Connection status per platform, channel identity and one-click disconnect with token revoke.", icon: "📊" },
+            { title: "Job history", desc: "Every publish attempt persisted with its platform and status for auditing and retries.", icon: "📜" },
+        ],
+        features: [
+            "Real OAuth 2.0 — no scraping, no stored platform passwords",
+            "OAuth tokens encrypted at rest with AES-256-GCM",
+            "OAuth state signed with a secret separate from the session key",
+            "argon2 password hashing",
+            "Config validated by Zod — the API refuses to boot if malformed",
+            "Per-user isolation of connected accounts",
+            "Rate limiting that resolves real client IPs behind a proxy",
+            "Disconnect calls the provider's token revoke endpoint",
+        ],
+        engineering: [
+            {
+                title: "Tokens never touch the browser",
+                desc: "The OAuth exchange completes server-side and access tokens are encrypted with AES-256-GCM before they are stored. The frontend only ever holds a session cookie, so a compromised client leaks no platform access.",
+            },
+            {
+                title: "Two secrets, two jobs",
+                desc: "The OAuth state parameter is signed with a key deliberately separate from the session JWT secret. Reusing one key would let a forged session token stand in as a valid CSRF binding.",
+            },
+            {
+                title: "Cross-site by construction",
+                desc: "Frontend and API sit on different origins in production, so the session cookie is SameSite=None + Secure there and Lax locally, and CORS is a strict origin allowlist — never a *.vercel.app wildcard, since credentials are enabled.",
+            },
+            {
+                title: "Fail at boot, not at runtime",
+                desc: "Zod validates every environment variable on startup, so a missing encryption key stops the process immediately instead of surfacing as a corrupted token weeks later.",
+            },
+        ],
+    },
+    {
         slug: "campusflow",
         name: "CampusFlow",
         tagline: "Multi-campus ERP & operations dashboard",

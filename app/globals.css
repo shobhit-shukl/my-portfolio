@@ -237,6 +237,75 @@ body {
   width: 100%;
 }
 
+/* ---------- ANIMATED VIDEO FRAME ---------- */
+
+/* Light travels down the ring and back up. */
+@keyframes borderTravel {
+  0% {
+    background-position: 50% 0%;
+  }
+
+  50% {
+    background-position: 50% 100%;
+  }
+
+  100% {
+    background-position: 50% 0%;
+  }
+}
+
+/* Ring brightens and dims on a slightly different cycle, so the two never
+   land in lockstep and the movement reads as organic. */
+@keyframes borderBreathe {
+
+  0%,
+  100% {
+    filter: brightness(0.75) saturate(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    filter: brightness(1.6) saturate(1.35);
+    opacity: 1;
+  }
+}
+
+@keyframes glowBreathe {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.video-frame {
+  background: linear-gradient(180deg,
+      rgba(59, 130, 246, 0.1) 0%,
+      #3b82f6 18%,
+      #22d3ee 34%,
+      #818cf8 50%,
+      #22d3ee 66%,
+      #3b82f6 82%,
+      rgba(59, 130, 246, 0.1) 100%);
+  background-size: 100% 300%;
+  animation: borderTravel 5s ease-in-out infinite,
+    borderBreathe 3.2s ease-in-out infinite;
+}
+
+.animate-glow-breathe {
+  animation: glowBreathe 3.2s ease-in-out infinite;
+}
+
+/* Hovering brings the ring to full strength and speeds the travel up. */
+.group:hover .video-frame {
+  animation: borderTravel 2.5s ease-in-out infinite,
+    borderBreathe 1.8s ease-in-out infinite;
+}
+
 /* ---------- ACCESSIBILITY ---------- */
 
 @media (prefers-reduced-motion: reduce) {
